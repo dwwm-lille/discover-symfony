@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Les Tortues Ninja</h1>
+
+    <ul>
+    {% for turtle in turtles %}
+        <li>
+            {{ turtle.name }}
+
+            <span style="color: {{ turtle.color }}">
+                {% for i in 1..turtle.size -%}
+                    =
+                {%- endfor %}
+            </span>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
