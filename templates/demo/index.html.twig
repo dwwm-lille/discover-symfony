@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>On est sur la page {{ page }}</h1>
+    <a href="{{ path('app_demo', { page: page + 1 }) }}">Page suivante</a>
+
+    {{ dump(games) }}
+
+    {# Twig protège des failles XSS par défaut #}
+    <p>{{ test }} (avec htmlspecialchars)</p>
+    <p>{{ test | raw }} (sans)</p>
+
+    {# Commentaire en Twig #}
+    <ul>
+    {% for game in games %}
+        <li>
+            {# /demo/abc #}
+            <a href="{{ path('app_show', { game: game }) }}">
+                {{ game }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
