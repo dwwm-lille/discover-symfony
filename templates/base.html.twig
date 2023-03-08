@@ -21,6 +21,12 @@
             <li>
                 <a href="{{ path('app_welcome') }}">Hello</a>
             </li>
+            <li>
+                <a href="{{ path('app_demo') }}">Demo</a>
+            </li>
+            <li>
+                <a href="{{ path('app_hello', { name: 'jean-edo' }) }}">Hello Jean-Edo</a>
+            </li>
         </ul>
 
         {% block body %}{% endblock %}

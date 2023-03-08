@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Bonjour {{ name }}</h1>
+
+    <p>{{ 'toto-titi' | title }}</p>
+
+    {% if name == 'Fiorella' %}
+        <p>Heyyyy</p>
+    {% endif %}
+{% endblock %}
