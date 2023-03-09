@@ -17,6 +17,10 @@ class ProductController extends AbstractController
             ['name' => 'iPhone X', 'slug' => 'iphone-x', 'description' => 'Un iPhone de 2017', 'price' => 999],
             ['name' => 'iPhone XR', 'slug' => 'iphone-xr', 'description' => 'Un iPhone de 2018', 'price' => 1099],
             ['name' => 'iPhone XS', 'slug' => 'iphone-xs', 'description' => 'Un iPhone de 2018', 'price' => 1199],
+            ['name' => 'iPhone 1', 'slug' => 'iphone-1', 'description' => 'Un iPhone de 20181', 'price' => 11991],
+            ['name' => 'iPhone 2', 'slug' => 'iphone-2', 'description' => 'Un iPhone de 20182', 'price' => 11992],
+            ['name' => 'iPhone 3', 'slug' => 'iphone-3', 'description' => 'Un iPhone de 20183', 'price' => 11993],
+            ['name' => 'iPhone 4', 'slug' => 'iphone-4', 'description' => 'Un iPhone de 20184', 'price' => 11994],
         ];
     }
 

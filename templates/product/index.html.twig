@@ -37,11 +37,11 @@
 </table>
 
 {% if page > 1 %}
-<a href="{{ path('app_product', { page: page - 1 }) }}">Page précédente</a>
+<a href="{{ path('app_product', { page: page - 1, price: app.request.get('price') }) }}">Page précédente</a>
 {% endif %}
 
 {% if page < totalPage %}
-<a href="{{ path('app_product', { page: page + 1 }) }}">Page suivante</a>
+<a href="{{ path('app_product', { page: page + 1, price: app.request.get('price') }) }}">Page suivante</a>
 {% endif %}
 
 <a href="{{ path('app_product_random') }}">Produit aléatoire</a>
