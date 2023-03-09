@@ -1,5 +1,16 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+    Bienvenue sur mon site - {{ parent() }}
+{% endblock %}
+
 {% block body %}
     <h1>Accueil</h1>
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+    <li>
+        Item en plus
+    </li>
 {% endblock %}

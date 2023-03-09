@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>{{ product.name }}</h1>
-    <p>{{ product.price }} €</p>
+    <h1>{{ product.name | upper | lower }}</h1>
+    <p>{{ product.price | number_format(2, ',', ' ') }} €</p>
+    <p>{{ product.price | format_currency('EUR', locale='fr') }}</p>
+
+    <p>{{ country_names() | join(', ') }}</p>
 {% endblock %}
