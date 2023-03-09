@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<form method="get">
+    <input type="text" name="price" id="price" placeholder="Prix minimum..." value="{{ app.request.get('price') }}">
+
+    <button>Filtrer</button>
+</form>
+
+<table>
+    <thead>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Slug</th>
+        <th>Description</th>
+        <th>Price</th>
+    </thead>
+    <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>
+                    <a href="#">
+                        {{ product.name }}
+                    </a>
+                </td>
+                <td>{{ product.slug }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price }} €</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Pas de produits</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
