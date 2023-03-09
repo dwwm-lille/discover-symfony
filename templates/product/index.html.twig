@@ -20,7 +20,7 @@
             <tr>
                 <td>{{ loop.index }}</td>
                 <td>
-                    <a href="#">
+                    <a href="{{ path('app_product_show', { slug: product.slug }) }}">
                         {{ product.name }}
                     </a>
                 </td>

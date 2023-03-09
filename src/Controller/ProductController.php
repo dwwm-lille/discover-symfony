@@ -43,4 +43,32 @@ class ProductController extends AbstractController
             'product' => $product,
         ]);
     }
+
+    #[Route('/product/{slug}', name: 'app_product_show')]
+    public function show($slug): Response
+    {
+        $product = array_values(array_filter($this->products, function ($product) use ($slug) {
+            return $product['slug'] === $slug;
+        }))[0] ?? null;
+
+        if (! $product) {
+            throw $this->createNotFoundException();
+        }
+
+        return $this->render('product/show.html.twig', [
+            'product' => $product,
+        ]);
+    }
+
+    #[Route('/product/create', name: 'app_product_create')]
+    public function create(): Response
+    {
+        return $this->render('product/create.html.twig');
+    }
+
+    #[Route('/product.json', name: 'app_product_api')]
+    public function api(): Response
+    {
+        return $this->json($this->products);
+    }
 }
