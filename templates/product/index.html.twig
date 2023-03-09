@@ -2,7 +2,7 @@
 
 {% block body %}
 <form method="get">
-    <input type="text" name="price" id="price" placeholder="Prix minimum..." value="{{ app.request.get('price') }}">
+    <input type="text" name="price" id="price" placeholder="Prix maximum..." value="{{ app.request.get('price') }}">
 
     <button>Filtrer</button>
 </form>
@@ -10,10 +10,10 @@
 <table>
     <thead>
         <th>ID</th>
-        <th>Name</th>
+        <th>Nom</th>
         <th>Slug</th>
         <th>Description</th>
-        <th>Price</th>
+        <th>Prix</th>
     </thead>
     <tbody>
         {% for product in products %}
@@ -35,4 +35,14 @@
         {% endfor %}
     </tbody>
 </table>
+
+{% if page > 1 %}
+<a href="{{ path('app_product', { page: page - 1 }) }}">Page précédente</a>
+{% endif %}
+
+{% if page < totalPage %}
+<a href="{{ path('app_product', { page: page + 1 }) }}">Page suivante</a>
+{% endif %}
+
+<a href="{{ path('app_product_random') }}">Produit aléatoire</a>
 {% endblock %}

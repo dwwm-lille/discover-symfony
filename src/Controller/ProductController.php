@@ -20,8 +20,8 @@ class ProductController extends AbstractController
         ];
     }
 
-    #[Route('/product', name: 'app_product')]
-    public function index(Request $request): Response
+    #[Route('/product/{page}', name: 'app_product')]
+    public function index(Request $request, $page = 1): Response
     {
         $products = array_filter($this->products, function ($product) use ($request) {
             $price = $request->get('price', INF) ?: INF; // Si pas de price, INF. Si price est vide, INF.
@@ -29,8 +29,18 @@ class ProductController extends AbstractController
             return $product['price'] <= $price;
         });
 
+        // Pagination tableau (array_chunk)
+        $chunk = array_chunk($products, 2);
+        $products = $chunk[$page - 1] ?? null;
+
+        if (! $products) {
+            throw $this->createNotFoundException();
+        }
+
         return $this->render('product/index.html.twig', [
             'products' => $products,
+            'page' => $page,
+            'totalPage' => count($chunk),
         ]);
     }
 
@@ -42,6 +52,12 @@ class ProductController extends AbstractController
         return $this->render('product/show.html.twig', [
             'product' => $product,
         ]);
+    }
+
+    #[Route('/product/create', name: 'app_product_create', priority: 1)]
+    public function create(): Response
+    {
+        return $this->render('product/create.html.twig');
     }
 
     #[Route('/product/{slug}', name: 'app_product_show')]
@@ -58,12 +74,6 @@ class ProductController extends AbstractController
         return $this->render('product/show.html.twig', [
             'product' => $product,
         ]);
-    }
-
-    #[Route('/product/create', name: 'app_product_create')]
-    public function create(): Response
-    {
-        return $this->render('product/create.html.twig');
     }
 
     #[Route('/product.json', name: 'app_product_api')]
