@@ -22,4 +22,19 @@ class NinjaTurtleController extends AbstractController
             'turtles' => $this->turtles,
         ]);
     }
+
+    #[Route('/ninja-turtle/{color}', name: 'app_ninja_turtle_show')]
+    public function show($color): Response
+    {
+        foreach ($this->turtles as $turtle) {
+            if ($turtle['color'] === $color) {
+                return $this->render('ninja_turtle/show.html.twig', [
+                    'turtle' => $turtle,
+                ]);
+            }
+        }
+
+        // Renvoie une 404
+        throw $this->createNotFoundException();
+    }
 }
