@@ -21,6 +21,14 @@ class NinjaTurtleController extends AbstractController
     {
         // /ninja-turtle?size=3 => $_GET['size'] c'est NON !
         dump($request->get('size'));
+        dump($request);
+
+        // Générer les filtres du select
+        // array_column => [2, 2, 3, 4]
+        // array_unique => [2, 3, 4]
+        // array_values => reset des indexes
+        $filters = array_values(array_unique(array_column($this->turtles, 'size')));
+        dump($filters);
 
         if (is_numeric($request->get('size'))) {
             // On va filtrer les tortues par rapport à la valeur de size dans l'URL
@@ -31,6 +39,8 @@ class NinjaTurtleController extends AbstractController
 
         return $this->render('ninja_turtle/index.html.twig', [
             'turtles' => $this->turtles,
+            'filters' => $filters,
+            'size' => $request->get('size'),
         ]);
     }
 

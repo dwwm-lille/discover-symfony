@@ -3,6 +3,22 @@
 {% block body %}
     <h1>Les Tortues Ninja</h1>
 
+    <form method="get">
+        <select name="size">
+            <option value="">Tout</option>
+            {% for item in filters %}
+                <option value="{{ item }}" {{ item == size ? 'selected' }}>Taille {{ item }}</option>
+            {% endfor %}
+        </select>
+        <button>Filtrer</button>
+    </form>
+
+    {{ dump() }}
+
+    {% if app.request.get('size') %}
+    <p>Vous avez sélectionné la taille {{ app.request.get('size') }}</p>
+    {% endif %}
+
     <ul>
     {% for turtle in turtles %}
         <li>
