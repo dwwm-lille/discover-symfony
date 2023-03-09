@@ -24,7 +24,7 @@ class ProductController extends AbstractController
         ];
     }
 
-    #[Route('/product/{page}', name: 'app_product')]
+    #[Route('/product/{page}', name: 'app_product', requirements: ['page' => '[0-9]+'])]
     public function index(Request $request, $page = 1): Response
     {
         $products = array_filter($this->products, function ($product) use ($request) {
