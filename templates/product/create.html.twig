@@ -2,6 +2,17 @@
 
 {% block body %}
     {{ form_start(form) }}
+        {# form_widget(form) #}
+
+        <div class="row">
+            <div class="col-6">
+                {{ form_row(form.name, { attr: { class: 'bg-primary' } }) }}
+            </div>
+            <div class="col-6">
+                {{ form_row(form.description) }}
+            </div>
+        </div>
+
         {{ form_widget(form) }}
 
         <button class="btn btn-primary" formnovalidate>Ajouter</button>
