@@ -7,11 +7,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Contact
 {
     #[Assert\NotBlank]
-    #[Assert\Length(min: 3)]
+    #[Assert\Length(min: 3, minMessage: 'Le nom doit faire {{ limit }} caractère(s) minimum.')]
     private $name;
 
     #[Assert\NotBlank]
     #[Assert\Email]
+    #[Assert\Regex('/@yopmail.com$/', match: false, message: 'Adresse Yopmail interdite.')]
     private $email;
 
     #[Assert\NotBlank]

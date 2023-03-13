@@ -15,6 +15,8 @@ class ContactController extends AbstractController
     public function index(Request $request): Response
     {
         $contact = new Contact();
+        $contact->setName('Fiorella');
+
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
