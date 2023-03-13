@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -59,9 +61,26 @@ class ProductController extends AbstractController
     }
 
     #[Route('/product/create', name: 'app_product_create', priority: 1)]
-    public function create(): Response
+    public function create(Request $request): Response
     {
-        return $this->render('product/create.html.twig');
+        $product = new Product();
+        $product->name = 'Fiorella';
+        dump($product);
+
+        $form = $this->createFormBuilder($product)
+            ->add('name')
+            ->add('description', TextareaType::class)
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            dump($form->getData());
+        }
+
+        return $this->render('product/create.html.twig', [
+            'form' => $form,
+        ]);
     }
 
     #[Route('/product/{slug}', name: 'app_product_show')]
