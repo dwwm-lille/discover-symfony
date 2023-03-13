@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
+use App\Form\ProductType;
 use App\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -67,11 +67,9 @@ class ProductController extends AbstractController
         $product->name = 'Fiorella';
         dump($product);
 
-        $form = $this->createFormBuilder($product)
-            ->add('name')
-            ->add('description', TextareaType::class)
-            ->getForm();
-
+        $form = $this->createForm(ProductType::class, $product, [
+            'the_fiorella_option' => 'phone',
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
