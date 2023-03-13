@@ -2,10 +2,20 @@
 
 namespace App;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 class Contact
 {
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3)]
     private $name;
+
+    #[Assert\NotBlank]
+    #[Assert\Email]
     private $email;
+
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 15)]
     private $message;
 
     public function getName()
